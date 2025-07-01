@@ -1,0 +1,20 @@
+package org.example
+
+import java.net.URI
+import java.net.http.HttpClient
+import java.net.http.HttpRequest
+import java.net.http.HttpResponse.BodyHandlers
+
+
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+fun main() {
+    val client: HttpClient = HttpClient.newHttpClient()
+    val request: HttpRequest = HttpRequest.newBuilder()
+        .uri(URI.create("https://www.themealdb.com/api/json/v1/1/list.php?i=list"))
+        .build()
+    val response = client
+        .send<String?>(request, BodyHandlers.ofString())
+    val json = response.body()
+    println(json)
+}
