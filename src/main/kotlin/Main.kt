@@ -19,6 +19,15 @@ fun main() {
     val json = response.body()
 
     val gson = Gson()
-    val eggsBenedict = gson.fromJson(json, Recipes::class.java)
+    val apiEggsBenedict = gson.fromJson(json, Recipes::class.java)
+    val eggsBenedict = Recipe(
+        apiEggsBenedict.meals[0].strMeal,
+        apiEggsBenedict.meals[0].strCategory,
+        apiEggsBenedict.meals[0].strArea,
+        apiEggsBenedict.meals[0].strInstructions,
+        apiEggsBenedict.meals[0].strMealThumb,
+        apiEggsBenedict.meals[0].strYoutube
+    )
+
     print(eggsBenedict)
 }
