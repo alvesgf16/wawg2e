@@ -2,32 +2,45 @@ package org.example
 
 import com.google.gson.Gson
 import java.net.URI
+import java.net.URLEncoder
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse.BodyHandlers
+import java.util.Scanner
 
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
+    val reader = Scanner(System.`in`)
+    print("Enter a recipe to search: ")
+    val queryParameter = URLEncoder.encode(reader.nextLine(), "UTF-8")
+
+    val uriString = "https://www.themealdb.com/api/json/v1/1/search.php?s=$queryParameter"
+
     val client: HttpClient = HttpClient.newHttpClient()
     val request: HttpRequest = HttpRequest.newBuilder()
-        .uri(URI.create("https://www.themealdb.com/api/json/v1/1/search.php?s=Eggs%20Benedict"))
+        .uri(URI.create(uriString))
         .build()
     val response = client
         .send<String?>(request, BodyHandlers.ofString())
     val json = response.body()
 
     val gson = Gson()
-    val apiEggsBenedict = gson.fromJson(json, Recipes::class.java)
-    val eggsBenedict = Recipe(
-        apiEggsBenedict.meals[0].strMeal,
-        apiEggsBenedict.meals[0].strCategory,
-        apiEggsBenedict.meals[0].strArea,
-        apiEggsBenedict.meals[0].strInstructions,
-        apiEggsBenedict.meals[0].strMealThumb,
-        apiEggsBenedict.meals[0].strYoutube
-    )
+    val apiRecipe = gson.fromJson(json, Recipes::class.java)
 
-    print(eggsBenedict)
+    val result = runCatching {
+        val recipe = Recipe(
+            apiRecipe.meals[0].strMeal,
+            apiRecipe.meals[0].strCategory,
+            apiRecipe.meals[0].strArea,
+            apiRecipe.meals[0].strInstructions,
+            apiRecipe.meals[0].strMealThumb,
+            apiRecipe.meals[0].strYoutube
+        )
+
+        println(recipe)
+    }
+
+    result.onFailure { println("Recipe does not exist. Try another search.") }
 }
