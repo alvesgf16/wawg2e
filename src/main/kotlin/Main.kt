@@ -29,8 +29,10 @@ fun main() {
     val gson = Gson()
     val apiRecipe = gson.fromJson(json, Recipes::class.java)
 
+    var recipe: Recipe? = null
+
     val result = runCatching {
-        val recipe = Recipe(
+        recipe = Recipe(
             apiRecipe.meals[0].strMeal,
             apiRecipe.meals[0].strCategory,
             apiRecipe.meals[0].strArea,
