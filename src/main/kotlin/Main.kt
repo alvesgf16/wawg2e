@@ -40,9 +40,21 @@ fun main() {
             apiRecipe.meals[0].strMealThumb,
             apiRecipe.meals[0].strYoutube
         )
-
-        println(recipe)
     }
 
     result.onFailure { println("Recipe does not exist. Try another search.") }
+
+    result.onSuccess {
+        println("Do you want to enter a custom description? Y/N")
+        val option = read.nextLine()
+        if (option.equals("y", true)) {
+            print("Enter custom description for the recipe: ")
+            val customDescription = read.nextLine()
+            recipe?.description = customDescription
+        } else {
+            recipe?.description = recipe.name
+        }
+
+        println(recipe)
+    }
 }
