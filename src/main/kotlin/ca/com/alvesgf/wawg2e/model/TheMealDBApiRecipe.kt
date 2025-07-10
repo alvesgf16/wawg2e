@@ -1,4 +1,4 @@
-package org.example
+package ca.com.alvesgf.wawg2e.model
 
 data class TheMealDBApiRecipe(
     val strMeal: String,

@@ -1,6 +1,8 @@
-package org.example
+package ca.com.alvesgf.wawg2e.main
 
 import com.google.gson.Gson
+import ca.com.alvesgf.wawg2e.model.Recipe
+import ca.com.alvesgf.wawg2e.model.Recipes
 import java.net.URI
 import java.net.URLEncoder
 import java.net.http.HttpClient
