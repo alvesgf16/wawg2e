@@ -12,9 +12,9 @@ import java.util.Scanner
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
-    val reader = Scanner(System.`in`)
+    val read = Scanner(System.`in`)
     print("Enter a recipe to search: ")
-    val queryParameter = URLEncoder.encode(reader.nextLine(), "UTF-8")
+    val queryParameter = URLEncoder.encode(read.nextLine(), "UTF-8")
 
     val uriString = "https://www.themealdb.com/api/json/v1/1/search.php?s=$queryParameter"
 
