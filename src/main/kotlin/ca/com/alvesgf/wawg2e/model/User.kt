@@ -41,7 +41,7 @@ data class User(var name: String, var email: String) {
     }
 
     fun validateEmail(): String {
-        val regex = Regex("^[A-Za-z0-9._%+-]+@]{1}[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")
+        val regex = Regex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")
 
         if (regex.matches(email)) {
             return email
