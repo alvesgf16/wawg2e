@@ -60,5 +60,25 @@ fun main() {
     println("Searched recipes:")
     println(user.searchedRecipes)
 
+    println("\nRecipes ordered by name:")
+    user.searchedRecipes.sortedBy { it.name }.forEach { println("- ${it.name}") }
+
+    val filteredRecipes = user.searchedRecipes.filter { it.name.contains("eggs", true) }
+    println("\nFiltered recipes:")
+    println(filteredRecipes)
+
+    print("Do you want to delete a game from the original list? (Y/N) ")
+    val option = read.nextLine()
+
+    if (option.equals("y", true)) {
+        println(user.searchedRecipes)
+        print("\nInform the position of the game you want to delete: ")
+        val position = read.nextInt()
+        user.searchedRecipes.removeAt(position)
+    }
+
+    println("\nUpdated list:")
+    println(user.searchedRecipes)
+
     println("Search completed successfully")
 }
