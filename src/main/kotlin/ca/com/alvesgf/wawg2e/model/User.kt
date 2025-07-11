@@ -17,6 +17,8 @@ data class User(var name: String, var email: String) {
     var internalId: String? = null
         private set
 
+    val searchedRecipes = mutableListOf<Recipe>()
+
     constructor(name: String, email: String, birthDate: String, username: String) : this(name, email) {
         this.birthDate = birthDate
         this.username = username

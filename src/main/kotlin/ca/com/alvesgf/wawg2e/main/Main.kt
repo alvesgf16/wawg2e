@@ -16,38 +16,49 @@ fun main() {
     val user = User.createUser(read)
     println("Registration completed successfully. Welcome, ${user.name}")
 
+    do {
         print("Enter a recipe to search: ")
         val recipeName = URLEncoder.encode(read.nextLine(), "UTF-8")
 
-    val apiSearch = ApiConsumption()
-    var apiRecipe: TheMealDBApiRecipe? = null
+        val apiSearch = ApiConsumption()
+        var apiRecipe: TheMealDBApiRecipe? = null
 
-    val result = runCatching {
-        apiRecipe = apiSearch.searchRecipe(recipeName)
-    }
-
-    result.onFailure { println("Recipe does not exist. Try another search.") }
-
-    result.onSuccess {
-        val recipe = Recipe(
-            apiRecipe!!.strMeal,
-            apiRecipe.strCategory,
-            apiRecipe.strArea,
-            apiRecipe.strInstructions,
-            apiRecipe.strMealThumb,
-            apiRecipe.strYoutube
-        )
-
-        println("Do you want to enter a custom description? Y/N")
-        val option = read.nextLine()
-        if (option.equals("y", true)) {
-            print("Enter custom description for the recipe: ")
-            val customDescription = read.nextLine()
-            recipe.description = customDescription
-        } else {
-            recipe.description = recipe.name
+        val result = runCatching {
+            apiRecipe = apiSearch.searchRecipe(recipeName)
         }
 
-        println(recipe)
-    }
+        result.onFailure { println("Recipe does not exist. Try another search.") }
+
+        result.onSuccess {
+            val recipe = Recipe(
+                apiRecipe!!.strMeal,
+                apiRecipe.strCategory,
+                apiRecipe.strArea,
+                apiRecipe.strInstructions,
+                apiRecipe.strMealThumb,
+                apiRecipe.strYoutube
+            )
+
+            print("Do you want to enter a custom description? (Y/N) ")
+            val option = read.nextLine()
+            if (option.equals("y", true)) {
+                print("Enter custom description for the recipe: ")
+                val customDescription = read.nextLine()
+                recipe.description = customDescription
+            } else {
+                recipe.description = recipe.name
+            }
+
+            user.searchedRecipes.add(recipe)
+            println("Recipe added to the list: ${recipe.name}")
+        }
+
+        print("Do you want to search another recipe? (Y/N) ")
+        val response = read.nextLine()
+    } while (response.equals("y", true))
+
+    println("Searched recipes:")
+    println(user.searchedRecipes)
+
+    println("Search completed successfully")
 }
