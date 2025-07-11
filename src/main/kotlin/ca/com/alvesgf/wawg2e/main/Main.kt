@@ -2,17 +2,22 @@ package ca.com.alvesgf.wawg2e.main
 
 import ca.com.alvesgf.wawg2e.model.Recipe
 import ca.com.alvesgf.wawg2e.model.TheMealDBApiRecipe
+import ca.com.alvesgf.wawg2e.model.User
 import ca.com.alvesgf.wawg2e.services.ApiConsumption
 import java.net.URLEncoder
-import java.util.Scanner
+import java.util.*
 
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
     val read = Scanner(System.`in`)
-    print("Enter a recipe to search: ")
-    val recipeName = URLEncoder.encode(read.nextLine(), "UTF-8")
+
+    val user = User.createUser(read)
+    println("Registration completed successfully. Welcome, ${user.name}")
+
+        print("Enter a recipe to search: ")
+        val recipeName = URLEncoder.encode(read.nextLine(), "UTF-8")
 
     val apiSearch = ApiConsumption()
     var apiRecipe: TheMealDBApiRecipe? = null
