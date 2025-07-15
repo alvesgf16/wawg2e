@@ -4,6 +4,7 @@ import ca.com.alvesgf.wawg2e.model.Recipe
 import ca.com.alvesgf.wawg2e.model.TheMealDBApiRecipe
 import ca.com.alvesgf.wawg2e.model.User
 import ca.com.alvesgf.wawg2e.services.ApiConsumption
+import ca.com.alvesgf.wawg2e.utils.turnIntoAge
 import java.net.URLEncoder
 import java.util.*
 
@@ -15,6 +16,7 @@ fun main() {
 
     val user = User.createUser(read)
     println("Registration completed successfully. Welcome, ${user.name}")
+    println("User age: " + user.birthDate?.turnIntoAge())
 
     do {
         print("Enter a recipe to search: ")

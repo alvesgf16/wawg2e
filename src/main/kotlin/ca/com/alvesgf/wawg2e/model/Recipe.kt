@@ -9,5 +9,6 @@ data class Recipe(
     val video: String,
 ) {
     var description: String? = null
+
     override fun toString(): String = "Recipe($name)"
 }
