@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Alice Johnson",
+    "email": "alice.johnson@example.com",
+    "birth_date": "1992-08-15",
+    "username": "chalice",
+    "internal_id": "chalice#3742"
+  },
+  {
+    "name": "Bruno Souza",
+    "email": "bruno.santos@example.com",
+    "birth_date": "1989-03-22",
+    "username": "bsouza",
+    "internal_id": "bsouza#9183"
+  },
+  {
+    "name": "Clara Kim",
+    "email": "clara.kim@example.com",
+    "birth_date": "1995-11-02",
+    "username": "kimchi",
+    "internal_id": "kimchi#4627"
+  },
+  {
+    "name": "David Müller",
+    "email": "david.mueller@example.com",
+    "birth_date": "1985-06-30",
+    "username": "dmueller",
+    "internal_id": "dmueller#2371"
+  },
+  {
+    "name": "Elena Rodriguez",
+    "email": "elena.rodriguez@example.com",
+    "birth_date": "1998-01-10",
+    "username": "arena",
+    "internal_id": "arena#5839"
+  },
+  {
+    "name": "Farhan Ali",
+    "email": "farhan.ali@example.com",
+    "birth_date": "1990-12-05",
+    "username": "fali",
+    "internal_id": "fali#7946"
+  }
+]
