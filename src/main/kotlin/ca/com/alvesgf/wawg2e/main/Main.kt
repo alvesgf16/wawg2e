@@ -38,7 +38,8 @@ fun main() {
                 apiRecipe.strArea,
                 apiRecipe.strInstructions,
                 apiRecipe.strMealThumb,
-                apiRecipe.strYoutube
+                apiRecipe.strYoutube,
+                apiRecipe.listIngredients
             )
 
             print("Do you want to enter a custom description? (Y/N) ")
