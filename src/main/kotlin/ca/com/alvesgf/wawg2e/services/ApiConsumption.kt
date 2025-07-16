@@ -19,9 +19,9 @@ class ApiConsumption {
         val json = consumeData(uriString)
 
         val gson = Gson()
-        val apiRecipe = gson.fromJson(json, Recipes::class.java)
+        val data = gson.fromJson(json, Recipes::class.java)
 
-        return apiRecipe.meals[0]
+        return data.meals.first()
     }
 
     fun searchUsers(): List<User> {
@@ -40,7 +40,7 @@ class ApiConsumption {
     private fun consumeData(uriString: String): String? {
         val client: HttpClient = HttpClient.newHttpClient()
         val request: HttpRequest = HttpRequest.newBuilder().uri(URI.create(uriString)).build()
-        val response = client.send<String?>(request, BodyHandlers.ofString())
+        val response = client.send(request, BodyHandlers.ofString())
         return response.body()
     }
 }
