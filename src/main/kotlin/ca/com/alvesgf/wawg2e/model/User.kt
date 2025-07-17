@@ -18,6 +18,12 @@ data class User(var name: String, var email: String) {
         private set
 
     val searchedRecipes = mutableListOf<Recipe>()
+    val recommendedRecipes = mutableListOf<Recipe>()
+
+    fun recommendRecipe(recipe: Recipe, score: Int) {
+        recipe.recommend(score)
+        recommendedRecipes.add(recipe)
+    }
 
     constructor(name: String, email: String, birthDate: String, username: String) : this(name, email) {
         this.birthDate = birthDate
